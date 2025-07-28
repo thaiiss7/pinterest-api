@@ -1,6 +1,6 @@
 namespace Pinterest.Models;
 
-public class Pasta
+public class Folder
 {
     public Guid ID { get; set; }
     public string Title { get; set; }

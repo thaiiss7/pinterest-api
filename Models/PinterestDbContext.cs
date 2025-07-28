@@ -6,7 +6,7 @@ public class PinterestDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<Profile> Profiles => Set<Profile>();
     public DbSet<Pin> Pins => Set<Pin>();
-    public DbSet<Pasta> Pastas => Set<Pasta>();
+    public DbSet<Folder> Folders => Set<Folder>();
 
     protected override void OnModelCreating(ModelBuilder model)
     {
@@ -18,9 +18,9 @@ public class PinterestDbContext(DbContextOptions options) : DbContext(options)
         .HasForeignKey(p => p.ProfileID)
         .OnDelete(DeleteBehavior.NoAction);
 
-        model.Entity<Pasta>()
+        model.Entity<Folder>()
         .HasOne(p => p.Author)
-        .WithMany(p => p.Pastas)
+        .WithMany(p => p.Folders)
         .HasForeignKey(p => p.ProfileID)
         .OnDelete(DeleteBehavior.NoAction);
     }

@@ -7,5 +7,5 @@ public class Pin
     public string Picture { get; set; }
     public Guid ProfileID { get; set; }
     public Profile Author { get; set; }
-    public ICollection<Pasta> Pastas { get; set; } = [];
+    public ICollection<Folder> Folders { get; set; } = [];
 }
