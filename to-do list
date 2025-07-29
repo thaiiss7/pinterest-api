@@ -1,0 +1,26 @@
+Ideia principal:
+
+- app com pastas, pins e perfis
+- pode criar um perfil
+- pode criar pastas
+- pode salvar pins em pastas
+- pode deletar pins próprios
+- pode postar pins
+- login
+- mostrar perfil com as pastas
+- mostrar pins
+
+To-do:     (não estão em ordem)
+
+- Configurar endpoints (folder, pin e revisar profile)
+- Adicionar services (password e jwt - certeza, verificar os pin e folder se é necessário)
+- Implementar services
+- Implementar UseCases
+- Validations (se necessário)
+
+Ideias secundárias:     (se eu tiver afim)
+
+- mostrar quantos pins tem em uma pasta (getprofiledata)
+- deletar perfil
+- deletar pastas
+- pastas privadas
