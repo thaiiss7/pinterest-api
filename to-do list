@@ -12,7 +12,7 @@ Ideia principal:
 
 To-do:     (não estão em ordem)
 
-- Configurar endpoints (folder, pin)
+- Configurar endpoints (folder)
 - Adicionar services (password e jwt - certeza, verificar os pin e folder se é necessário)
 - Implementar services
 - Implementar UseCases
