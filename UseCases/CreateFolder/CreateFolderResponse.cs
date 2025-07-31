@@ -1,3 +1,5 @@
 namespace Pinterest.UseCases.CreateFolder;
 
-public record CreateFolderRespponse;
+public record CreateFolderResponse(
+    Guid FolderId
+);

@@ -1,4 +1,7 @@
 
+using Microsoft.AspNetCore.Mvc;
+using Pinterest.UseCases.GetPinData;
+
 namespace Pinterest.EndPoints;
 
 public static class PinEndpoints
@@ -6,9 +9,9 @@ public static class PinEndpoints
     public static void ConfigurePinEndpoints(this WebApplication app)
     {
         // MapGet para buscar um pin pelo id
-        app.MatGet("pin/{id}", async (
+        app.MapGet("pin/{id}", async (
             string id,
-            [FromServices]GetPinDataPayload(title)) =>
+            [FromServices]GetPinDataUseCase useCase) =>
         {
             var payload = new GetPinDataPayload(title);
             var result = await useCase.Do(payload);

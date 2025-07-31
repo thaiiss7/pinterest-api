@@ -3,8 +3,8 @@ namespace Pinterest.UseCases.GetProfileData;
 
 public class GetProfileDataUseCase
 {
-    internal async Task Do(GetProfileDataPayload payload)
+    public async Task<Result<GetProfileDataResponse>> Do(GetProfileDataPayload payload)
     {
-        throw new NotImplementedException();
+        return Result<GetProfileDataResponse>.Success(null);
     }
 }
