@@ -1,2 +1,6 @@
-// dados: Guid PinId
-// dados: Guid FolderId
+namespace Pinterest.UseCases.SavePin;
+
+public record SavePinPayload(
+    Guid PinId,
+    Guid FolderId
+);

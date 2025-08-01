@@ -2,7 +2,7 @@ namespace Pinterest.UseCases.GetProfileData;
 
 public record GetProfileDataFolder(
     string Title,
-    string Picture,
+    string Picture
     // int NumberOfPins
     // vou ver como implemento depois
 );

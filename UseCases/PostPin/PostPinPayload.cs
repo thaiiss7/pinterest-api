@@ -1,4 +1,7 @@
-// public record com as informações de um pin:
-// string Title
-// string Picture
-// Guid ProfileId
+namespace Pinterest.UseCases.PostPin;
+
+public record PostPinPayload(
+    string Title,
+    string Picture,
+    Guid ProfileId
+);

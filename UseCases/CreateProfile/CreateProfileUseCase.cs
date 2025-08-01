@@ -1,24 +1,25 @@
 using Pinterest.Models;
+using Pinterest.Services.Password;
+using Pinterest.Services.Profiles;
 
 namespace Pinterest.UseCases.CreateProfile;
 
-public class CreateProfileUseCase
+public class CreateProfileUseCase(
+    IProfileService profilesService,
+    IPasswordService passwordService
+)
 {
-    //IProfilesService profilesService,
-    //IPasswordService passwordService
-}
-{
-    // public async Task<Result<CreateProfileResponse>> Do(CreateProfilePayload payload)
-    // {
-    //     var profile = new Profile {
-    //         Bio = payload.Bio,
-    //         Email = payload.Email,
-    //         Username = payload.Username,
-    //         Password = passwordService.Hash(payload.Password)
-    //     };
+    public async Task<Result<CreateProfileResponse>> Do(CreateProfilePayload payload)
+    {
+        var profile = new Profile {
+            Bio = payload.Bio,
+            Email = payload.Email,
+            Username = payload.Username,
+            Password = passwordService.Hash(payload.Password)
+        };
 
-    //     await profilesService.Create(profile);
+        await profilesService.Create(profile);
 
-    //     return Result<CreateProfileResponse>.Success(new());
-    // }
+        return Result<CreateProfileResponse>.Success(new());
+    }
 }

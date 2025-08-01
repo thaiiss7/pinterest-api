@@ -1,3 +1,5 @@
+using Pinterest.Models;
+
 namespace Pinterest.UseCases.GetPinData;
 
 public record GetPinDataResponse(

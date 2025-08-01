@@ -13,10 +13,8 @@ Ideia principal:
 To-do:     (não estão em ordem)
 
 - Configurar endpoints (folder)
-- Adicionar services (password e jwt - certeza, verificar os pin e folder se é necessário)
-- Implementar services
 - Implementar UseCases
-- Validations (se necessário)
+    - savepin
 
 Ideias secundárias:     (se eu tiver afim)
 

@@ -5,12 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Pinterest.Endpoints;
 
-//MapGet para buscar os dados do usuário
-//MapPost para criar um novo usuário
 public static class ProfileEndpoints
 {
     public static void ConfigureProfileEndpoints(this WebApplication app)
     {
+        //MapGet para buscar os dados do usuário
         app.MapGet("profile/{username}", async (
             string username,
             [FromServices]GetProfileDataUseCase useCase) =>
@@ -26,6 +25,7 @@ public static class ProfileEndpoints
             };
         });
         
+        //MapPost para criar um novo usuário
         app.MapPost("profile", async (
             [FromBody]CreateProfilePayload payload, 
             [FromServices]CreateProfileUseCase useCase) =>

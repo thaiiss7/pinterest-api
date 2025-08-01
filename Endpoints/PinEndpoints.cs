@@ -1,6 +1,10 @@
 
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Pinterest.UseCases.DeletePin;
 using Pinterest.UseCases.GetPinData;
+using Pinterest.UseCases.PostPin;
+using Pinterest.UseCases.SavePin;
 
 namespace Pinterest.EndPoints;
 
@@ -10,10 +14,10 @@ public static class PinEndpoints
     {
         // MapGet para buscar um pin pelo id
         app.MapGet("pin/{id}", async (
-            string id,
+            Guid id,
             [FromServices]GetPinDataUseCase useCase) =>
         {
-            var payload = new GetPinDataPayload(title);
+            var payload = new GetPinDataPayload(id);
             var result = await useCase.Do(payload);
 
             return (result.IsSuccess, result.Reason) switch
