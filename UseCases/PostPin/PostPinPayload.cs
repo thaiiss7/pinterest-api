@@ -1,7 +1,8 @@
 namespace Pinterest.UseCases.PostPin;
 
-public record PostPinPayload(
-    string Title,
-    string Picture,
-    Guid ProfileId
-);
+public record PostPinPayload
+{
+    public string Title;
+    public string Picture;
+    public Guid ProfileId;
+};

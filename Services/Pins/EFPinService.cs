@@ -5,6 +5,13 @@ namespace Pinterest.Services.Pins;
 
 public class EFPinService(PinterestDbContext ctx) : IPinsService
 {
+    public async Task<Guid> Create(Pin pin)
+    {
+        ctx.Pins.Add(pin);
+        await ctx.SaveChangesAsync();
+        return pin.ID;
+    }
+
     public async Task<Folder> Save(Guid pinId, Guid folderId)
     {
         var folder = await ctx.Folders.FirstOrDefaultAsync(f => f.ID == folderId);

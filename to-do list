@@ -13,8 +13,8 @@ Ideia principal:
 To-do:     (não estão em ordem)
 
 - Configurar endpoints (folder)
-- Implementar UseCases
-    - savepin
+- Atualizar migrations
+- Configurar deletes
 
 Ideias secundárias:     (se eu tiver afim)
 

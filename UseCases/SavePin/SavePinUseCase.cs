@@ -8,7 +8,8 @@ public class SavePinUseCase(
 {
     public async Task<Result<SavePinResponse>> Do(SavePinPayload payload)
     {
-        var folder
+        var folder = payload.FolderId;
+        
 
         return Result<SavePinResponse>.Success(null);
     }
