@@ -36,13 +36,10 @@ public static class PinEndpoints
             {
                 var result = await useCase.Do(payload);
             
-                return (result.IsSuccess, result.Reason) switch
-                {
-                    (false, "Pin not found") => Results.NotFound(),
-                    (false, _) => Results.BadRequest(),
-                    (true, _) => Results.Ok(result.Data)
-                };
+                if (result.IsSuccess)
+                return Results.Created();
             
+                return Results.BadRequest(result.Reason);
             });
 
         // MapPost para salvar um pin em uma pasta

@@ -14,12 +14,10 @@ public static class FolderEndpoints
             {
                 var result = await useCase.Do(payload);
 
-                return (result.IsSuccess, result.Reason) switch
-                {
-                    (false, "Post not found") => Results.NotFound(),
-                    (false, _) => Results.BadRequest(),
-                    (true, _) => Results.Ok(result.Data)
-                };
+                if (result.IsSuccess)
+                return Results.Created();
+            
+                return Results.BadRequest(result.Reason);
 
             });
 
