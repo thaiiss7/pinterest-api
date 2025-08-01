@@ -2,7 +2,7 @@ namespace Pinterest;
 
 public record Result<T>(
     T Data,
-    bool Sucess,
+    bool IsSuccess,
     string Reason
 )
 {
