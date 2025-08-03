@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Pinterest.UseCases.CreateFolder;
+using Pinterest.UseCases.GetFolderData;
 
 namespace Pinterest.Endpoints;
 
@@ -22,6 +23,20 @@ public static class FolderEndpoints
             });
 
         // MapGet para buscar a pasta por id
+        app.MapGet("folder/{id}", async (
+            Guid id,
+            [FromServices] GetFolderDataUseCase useCase) =>
+            {
+                var payload = new GetFolderDataPayload(id);
+                var result = await useCase.Do(payload);
+
+                return (result.IsSuccess, result.Reason) switch
+                {
+                    (false, "Folder not found") => Results.NotFound(),
+                    (false, _) => Results.BadRequest(),
+                    (true, _) => Results.Ok(result.Data)
+                };
+            });
 
     }
 }
