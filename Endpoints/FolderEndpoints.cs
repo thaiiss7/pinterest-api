@@ -15,14 +15,13 @@ public static class FolderEndpoints
                 var result = await useCase.Do(payload);
 
                 if (result.IsSuccess)
-                return Results.Created();
-            
+                    return Results.Created();
+
                 return Results.BadRequest(result.Reason);
 
             });
 
         // MapGet para buscar a pasta por id
-        
 
     }
 }
