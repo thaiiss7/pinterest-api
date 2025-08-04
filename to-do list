@@ -12,9 +12,9 @@ Ideia principal:
 
 To-do:     (não estão em ordem)
 
-- Configurar endpoints (folder)
 - Atualizar migrations
 - Configurar deletes
+- atualizar program
 
 Ideias secundárias:     (se eu tiver afim)
 
@@ -22,4 +22,4 @@ Ideias secundárias:     (se eu tiver afim)
 - deletar perfil
 - deletar pastas
 - pastas privadas
-- paginação
+- paginação (daqui algumas aulas)
