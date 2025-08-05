@@ -13,6 +13,7 @@ public class CreateFolderUseCase(
         {
             Title = payload.Title,
             Picture = payload.Picture,
+            // Secret = payload.Secret,
             ProfileID = payload.ProfileId
         };
 
