@@ -14,7 +14,7 @@ public static class PinEndpoints
     {
         // MapGet para buscar um pin pelo id
         app.MapGet("pin/{id}", async (
-            Guid id,
+            string id,
             [FromServices]GetPinDataUseCase useCase) =>
         {
             var payload = new GetPinDataPayload(id);

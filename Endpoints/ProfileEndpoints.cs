@@ -36,5 +36,24 @@ public static class ProfileEndpoints
             
             return Results.BadRequest(result.Reason);
         });
+
+        // MapDelete para deletar uma perfil por id
+        app.MapDelete("profile/{id}", async (string id, 
+            HttpContext http,
+            [FromServices]DeleteProfileUseCase useCase) =>
+        {
+            var claim = http.User.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = Guid.Parse(claim.Value);
+            var profileId = Guid.Parse(id);
+            var payload = new DeleteFolderPayload(userId);
+            var result = await useCase.Do(payload);
+
+            return (result.IsSuccess, result.Reason) switch
+            {
+                (false, "Profile not found") => Results.NotFound(),
+                (false, _) => Results.BadRequest(),
+                (true, _) => Results.Ok()
+            };
+        }).RequireAuthorization();
     }
 }

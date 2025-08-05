@@ -9,16 +9,18 @@ Ideia principal:
 - login
 - mostrar perfil com as pastas
 - mostrar pins
+- deletar pastas
+- deletar perfil
 
 To-do:     (não estão em ordem)
 
 - Atualizar migrations
-- Configurar deletes
+- Configurar delete profile (deletar os pins e pastas desse usuário)
+    * pedir ajuda pro trevis
+- atualizar program
 
 Ideias secundárias:     (se eu tiver afim)
 
 - mostrar quantos pins tem em uma pasta (getprofiledata)
-- deletar perfil
-- deletar pastas
 - pastas privadas
-- paginação
+- paginação (daqui algumas aulas)
