@@ -38,5 +38,24 @@ public static class FolderEndpoints
                 };
             });
 
+        // MapDelete para deletar uma pasta por id
+        app.MapDelete("folder/{id}", async (string id, 
+            HttpContext http,
+            [FromServices]DeleteFolderUseCase useCase) =>
+        {
+            var claim = http.User.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = Guid.Parse(claim.Value);
+            var folderId = Guid.Parse(id);
+            var payload = new DeleteFolderPayload(folderId, userId);
+            var result = await useCase.Do(payload);
+
+            return (result.IsSuccess, result.Reason) switch
+            {
+                (false, "Folder not found") => Results.NotFound(),
+                (false, _) => Results.BadRequest(),
+                (true, _) => Results.Ok()
+            };
+        }).RequireAuthorization();
+
     }
 }
