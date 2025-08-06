@@ -52,8 +52,8 @@ public static class FolderEndpoints
                     return Results.Ok(folder);
 
                 var userId = http.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (userId == null || folder.Author.ToString() != userId)
-                    return Results.Unauthorized();
+                if (folder.Author.ID.ToString() != userId)
+                    return Results.Forbid();
 
                 return Results.Ok(folder);
 

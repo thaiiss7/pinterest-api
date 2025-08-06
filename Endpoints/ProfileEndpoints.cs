@@ -2,6 +2,9 @@ using Pinterest.UseCases;
 using Pinterest.UseCases.CreateProfile;
 using Pinterest.UseCases.GetProfileData;
 using Microsoft.AspNetCore.Mvc;
+using Pinterest.UseCases.DeleteProfile;
+using System.Security.Claims;
+using Pinterest.UseCases.DeleleFolder;
 
 namespace Pinterest.Endpoints;
 
@@ -45,7 +48,7 @@ public static class ProfileEndpoints
             var claim = http.User.FindFirst(ClaimTypes.NameIdentifier);
             var userId = Guid.Parse(claim.Value);
             var profileId = Guid.Parse(id);
-            var payload = new DeleteFolderPayload(userId);
+            var payload = new DeleteProfilePayload(userId);
             var result = await useCase.Do(payload);
 
             return (result.IsSuccess, result.Reason) switch
