@@ -21,7 +21,7 @@ using Pinterest.UseCases.SavePin;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<PinterestDbContext>(options => {
+builder.Services.AddDbContext<PinterestDbContext>(options => { //sqlConn, mybd
     var sqlConn = Environment.GetEnvironmentVariable("SQL_CONNECTION");
     options.UseSqlServer(sqlConn);
 });
