@@ -1,5 +1,5 @@
 namespace Pinterest.UseCases.DeleteProfile;
 
-public record DeletePostPayload(
+public record DeleteProfilePayload(
     Guid UserId
 );

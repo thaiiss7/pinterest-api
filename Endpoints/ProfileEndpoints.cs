@@ -48,7 +48,7 @@ public static class ProfileEndpoints
             var claim = http.User.FindFirst(ClaimTypes.NameIdentifier);
             var userId = Guid.Parse(claim.Value);
             var profileId = Guid.Parse(id);
-            var payload = new DeleteFolderPayload(userId);
+            var payload = new DeleteProfilePayload(userId);
             var result = await useCase.Do(payload);
 
             return (result.IsSuccess, result.Reason) switch
