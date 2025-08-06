@@ -27,8 +27,6 @@ public static class FolderEndpoints
             });
 
         // MapGet para buscar a pasta por id
-        // teria uma verificação em que se a pasta for privada, só pode ser acessada pelo próprio usuário
-        // primeiro testar como está e depois conversar com o trevis pra não estregar o código
         app.MapGet("folder/{id}", async (
             Guid id,
             HttpContext http,

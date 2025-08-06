@@ -11,6 +11,7 @@ Ideia principal:
 - mostrar pins
 - deletar pastas
 - deletar perfil
+- pastas privadas
 
 To-do:     (não estão em ordem)
 
@@ -21,5 +22,4 @@ To-do:     (não estão em ordem)
 Ideias secundárias:     (se eu tiver afim)
 
 - mostrar quantos pins tem em uma pasta (getprofiledata)
-- pastas privadas
 - paginação (daqui algumas aulas)
