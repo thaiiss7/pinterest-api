@@ -1,3 +1,5 @@
+using Pinterest.UseCases.DeleleFolder;
+
 namespace Pinterest.UseCases.DeleteFolder;
 
 public class DeleteFolderUseCase

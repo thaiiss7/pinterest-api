@@ -10,7 +10,7 @@ public record GetFolderDataPin(
 public record GetFolderDataResponse(
     string Title,
     Profile Author,
-    // bool Secret,
+    bool Secret,
     // int NumberOfpins, (não sei ainda como vou fazer isso, depois eu penso)
     ICollection<Pin> Pins
 );

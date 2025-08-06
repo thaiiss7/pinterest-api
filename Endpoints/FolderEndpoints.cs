@@ -1,5 +1,9 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Pinterest.Models;
 using Pinterest.UseCases.CreateFolder;
+using Pinterest.UseCases.DeleleFolder;
+using Pinterest.UseCases.DeleteFolder;
 using Pinterest.UseCases.GetFolderData;
 
 namespace Pinterest.Endpoints;
@@ -26,19 +30,34 @@ public static class FolderEndpoints
         // teria uma verificação em que se a pasta for privada, só pode ser acessada pelo próprio usuário
         // primeiro testar como está e depois conversar com o trevis pra não estregar o código
         app.MapGet("folder/{id}", async (
-            string id,
+            Guid id,
+            HttpContext http,
             [FromServices] GetFolderDataUseCase useCase) =>
             {
                 var payload = new GetFolderDataPayload(id);
                 var result = await useCase.Do(payload);
 
-                return (result.IsSuccess, result.Reason) switch
+                if (!result.IsSuccess)
                 {
-                    (false, "Folder not found") => Results.NotFound(),
-                    (false, _) => Results.BadRequest(),
-                    (true, _) => Results.Ok(result.Data)
-                };
-            });
+                    return (result.IsSuccess, result.Reason) switch
+                    {
+                        (false, "Folder not found") => Results.NotFound(),
+                        (false, _) => Results.BadRequest(),
+                    };
+                }
+
+                var folder = result.Data;
+
+                if (!folder.Secret)
+                    return Results.Ok(folder);
+
+                var userId = http.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null || folder.Author.ToString() != userId)
+                    return Results.Unauthorized();
+
+                return Results.Ok(folder);
+
+            }).RequireAuthorization();
 
         // MapDelete para deletar uma pasta por id
         app.MapDelete("folder/{id}", async (string id, 
