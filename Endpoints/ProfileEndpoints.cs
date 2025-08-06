@@ -2,6 +2,9 @@ using Pinterest.UseCases;
 using Pinterest.UseCases.CreateProfile;
 using Pinterest.UseCases.GetProfileData;
 using Microsoft.AspNetCore.Mvc;
+using Pinterest.UseCases.DeleteProfile;
+using System.Security.Claims;
+using Pinterest.UseCases.DeleleFolder;
 
 namespace Pinterest.Endpoints;
 

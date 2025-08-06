@@ -1,5 +1,8 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Pinterest.UseCases.CreateFolder;
+using Pinterest.UseCases.DeleleFolder;
+using Pinterest.UseCases.DeleteFolder;
 using Pinterest.UseCases.GetFolderData;
 
 namespace Pinterest.Endpoints;
@@ -26,7 +29,7 @@ public static class FolderEndpoints
         // teria uma verificação em que se a pasta for privada, só pode ser acessada pelo próprio usuário
         // primeiro testar como está e depois conversar com o trevis pra não estregar o código
         app.MapGet("folder/{id}", async (
-            string id,
+            Guid id,
             [FromServices] GetFolderDataUseCase useCase) =>
             {
                 var payload = new GetFolderDataPayload(id);
