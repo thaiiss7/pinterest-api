@@ -5,12 +5,12 @@ namespace Pinterest.UseCases.GetFolderData;
 public record GetFolderDataPin(
     string Title,
     string Picture,
-    Profile Author
+    string AuthorName
 );
 public record GetFolderDataResponse(
     string Title,
-    Profile Author,
+    string AuthorName,
     bool Secret,
-    int NumberOfpins, //(não sei ainda como vou fazer isso, depois eu penso)
-    ICollection<Pin> Pins
+    int NumberOfpins,
+    IEnumerable<GetFolderDataPin> Pins
 );
