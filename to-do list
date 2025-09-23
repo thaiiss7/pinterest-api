@@ -12,14 +12,14 @@ Ideia principal:
 - deletar pastas
 - deletar perfil
 - pastas privadas
+- Configurar delete profile (deletar os pins e pastas desse usuário)
+- mostrar quantos pins tem em uma pasta (getprofiledata)
+- consertar inmemory
+- implementar swagger
 
 To-do:     (não estão em ordem)
-
-- Atualizar migrations
-- Configurar delete profile (deletar os pins e pastas desse usuário)
-    * pedir ajuda pro trevis
+- seguir usuários
 
 Ideias secundárias:     (se eu tiver afim)
-
-- mostrar quantos pins tem em uma pasta (getprofiledata)
+- chat
 - paginação (daqui algumas aulas)

@@ -22,7 +22,7 @@ public class GetFolderDataUseCase(PinterestDbContext ctx)
             folder.Author.Username,
             folder.ProfileID,
             folder.Secret,
-            folder.Pins.Count,
+            folder.Pins.Count(),
             from p in folder.Pins
             select new GetFolderDataPin
             (

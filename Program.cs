@@ -5,8 +5,10 @@ using Microsoft.IdentityModel.Tokens;
 using Pinterest.Endpoints;
 using Pinterest.EndPoints;
 using Pinterest.Models;
+using Pinterest.Services.Folders;
 using Pinterest.Services.JWT;
 using Pinterest.Services.Password;
+using Pinterest.Services.Pins;
 using Pinterest.Services.Profiles;
 using Pinterest.UseCases.CreateFolder;
 using Pinterest.UseCases.CreateProfile;
@@ -21,14 +23,18 @@ using Pinterest.UseCases.SavePin;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<PinterestDbContext>(options => { //sqlConn, mybd
-    var sqlConn = Environment.GetEnvironmentVariable("SQL_CONNECTION");
-    options.UseSqlServer(sqlConn);
+//sqlConn, mybd
+builder.Services.AddDbContext<PinterestDbContext>(options =>
+{
+    var mybd = Environment.GetEnvironmentVariable("SQL_CONNECTION") ?? "PinterestDB";
+    options.UseInMemoryDatabase(mybd);
 });
 
 builder.Services.AddTransient<IPasswordService, PBKDF2PasswordService>();
 builder.Services.AddTransient<IProfileService, EFProfileService>();
 builder.Services.AddSingleton<IJWTService, JWTService>();
+builder.Services.AddTransient<IPinsService, EFPinService>();
+builder.Services.AddTransient<IFoldersService, EFFoldersService>();
 
 builder.Services.AddTransient<CreateFolderUseCase>();
 builder.Services.AddTransient<LoginUseCase>();
@@ -60,10 +66,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();

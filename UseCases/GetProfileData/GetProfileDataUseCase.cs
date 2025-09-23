@@ -24,7 +24,7 @@ public class GetProfileDataUseCase(PinterestDbContext ctx)
             (
                 f.Title,
                 f.Picture,
-                f.Pins.Count
+                f.Pins.Count()
             )
         );
 

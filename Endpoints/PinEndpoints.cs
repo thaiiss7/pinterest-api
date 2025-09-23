@@ -1,6 +1,7 @@
 
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Pinterest.Data;
 using Pinterest.UseCases.DeletePin;
 using Pinterest.UseCases.GetPinData;
 using Pinterest.UseCases.PostPin;
@@ -31,10 +32,18 @@ public static class PinEndpoints
 
         // MapPost para publicar um pin
         app.MapPost("pin", async (
-            [FromBody]PostPinPayload payload,
+            HttpContext http,
+            [FromBody] PostPinData payload,
             [FromServices]PostPinUseCase useCase) =>
             {
-                var result = await useCase.Do(payload);
+                var claim = http.User.FindFirst(ClaimTypes.NameIdentifier);
+                var userId = Guid.Parse(claim.Value);
+
+                var result = await useCase.Do(new PostPinPayload(
+                    payload.Title,
+                    payload.Picture,
+                    userId
+                ));
             
                 if (result.IsSuccess)
                 return Results.Created();
