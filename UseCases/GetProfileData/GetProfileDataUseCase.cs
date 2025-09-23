@@ -19,6 +19,7 @@ public class GetProfileDataUseCase(PinterestDbContext ctx)
         (
             profile.Username,
             profile.Bio,
+            profile.Followers.Count(),
             from f in profile.Folders
             select new GetProfileDataFolder
             (

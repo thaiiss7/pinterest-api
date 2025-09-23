@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Pinterest.UseCases.DeleteProfile;
 using System.Security.Claims;
 using Pinterest.UseCases.DeleleFolder;
+using Pinterest.UseCases.Follow;
+using Pinterest.Data;
 
 namespace Pinterest.Endpoints;
 
@@ -15,7 +17,7 @@ public static class ProfileEndpoints
         //MapGet para buscar os dados do usuário
         app.MapGet("profile/{username}", async (
             string username,
-            [FromServices]GetProfileDataUseCase useCase) =>
+            [FromServices] GetProfileDataUseCase useCase) =>
         {
             var payload = new GetProfileDataPayload(username);
             var result = await useCase.Do(payload);
@@ -27,23 +29,23 @@ public static class ProfileEndpoints
                 (true, _) => Results.Ok(result.Data)
             };
         });
-        
+
         //MapPost para criar um novo usuário
         app.MapPost("profile", async (
-            [FromBody]CreateProfilePayload payload, 
-            [FromServices]CreateProfileUseCase useCase) =>
+            [FromBody] CreateProfilePayload payload,
+            [FromServices] CreateProfileUseCase useCase) =>
         {
             var result = await useCase.Do(payload);
             if (result.IsSuccess)
                 return Results.Created();
-            
+
             return Results.BadRequest(result.Reason);
         });
 
         // MapDelete para deletar uma perfil por id
-        app.MapDelete("profile/{id}", async (string id, 
+        app.MapDelete("profile/{id}", async (string id,
             HttpContext http,
-            [FromServices]DeleteProfileUseCase useCase) =>
+            [FromServices] DeleteProfileUseCase useCase) =>
         {
             var claim = http.User.FindFirst(ClaimTypes.NameIdentifier);
             var userId = Guid.Parse(claim.Value);
@@ -58,5 +60,29 @@ public static class ProfileEndpoints
                 (true, _) => Results.Ok()
             };
         }).RequireAuthorization();
+
+        //seguir usuários
+        app.MapPut("/follow/{username}", async (
+            string username,
+            HttpContext http,
+            [FromBody] FollowData payload,
+            [FromServices] FollowUseCase useCase) =>
+            {
+                var claim = http.User.FindFirst(ClaimTypes.NameIdentifier);
+                var userId = Guid.Parse(claim.Value);
+
+                var result = await useCase.Do(new FollowPayload(
+                    username,
+                    userId
+                ));
+                
+                return (result.IsSuccess, result.Reason) switch
+                {
+                    (false, "Profile not found") => Results.NotFound(),
+                    (false, _) => Results.BadRequest(),
+                    (true, _) => Results.Ok()
+                };
+
+            });
     }
 }

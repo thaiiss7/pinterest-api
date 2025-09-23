@@ -9,5 +9,6 @@ public record GetProfileDataFolder(
 public record GetProfileDataResponse(
     string Username,
     string? Bio,
+    int Followers,
     IEnumerable<GetProfileDataFolder> Folders
 );
