@@ -58,7 +58,6 @@ public static class PinEndpoints
             });
 
         // MapDelete para deletar um pin por id
-        // estudar mais isso aqui depois
         app.MapDelete("pin/{id}", async (string id, 
             HttpContext http,
             [FromServices]DeletePinUseCase useCase) =>

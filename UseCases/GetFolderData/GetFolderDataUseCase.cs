@@ -20,6 +20,7 @@ public class GetFolderDataUseCase(PinterestDbContext ctx)
         (
             folder.Title,
             folder.Author.Username,
+            folder.ProfileID,
             folder.Secret,
             folder.Pins.Count,
             from p in folder.Pins

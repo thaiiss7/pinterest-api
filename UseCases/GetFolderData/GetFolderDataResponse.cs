@@ -10,6 +10,7 @@ public record GetFolderDataPin(
 public record GetFolderDataResponse(
     string Title,
     string AuthorName,
+    Guid AuthorId,
     bool Secret,
     int NumberOfpins,
     IEnumerable<GetFolderDataPin> Pins
