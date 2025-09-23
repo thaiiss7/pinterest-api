@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Pinterest.Data;
 using Pinterest.Models;
 using Pinterest.UseCases.CreateFolder;
 using Pinterest.UseCases.DeleleFolder;
@@ -14,10 +15,19 @@ public static class FolderEndpoints
     {
         // MapPost para criar uma pasta
         app.MapPost("folder", async (
-            [FromBody] CreateFolderPayload payload,
+            HttpContext http,
+            [FromBody] CreateFolderData payload,
             [FromServices] CreateFolderUseCase useCase) =>
             {
-                var result = await useCase.Do(payload);
+                var claim = http.User.FindFirst(ClaimTypes.NameIdentifier);
+                var userId = Guid.Parse(claim.Value);
+
+                var result = await useCase.Do(new CreateFolderPayload(
+                    payload.Title,
+                    payload.Picture,
+                    payload.Secret,
+                    userId
+                ));
 
                 if (result.IsSuccess)
                     return Results.Created();
@@ -50,7 +60,7 @@ public static class FolderEndpoints
                     return Results.Ok(folder);
 
                 var userId = http.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (folder.Author.ID.ToString() != userId)
+                if (folder.AuthorId.ToString() != userId)
                     return Results.Forbid();
 
                 return Results.Ok(folder);
