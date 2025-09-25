@@ -16,9 +16,24 @@ Ideia principal:
 - mostrar quantos pins tem em uma pasta (getprofiledata)
 - consertar inmemory
 - implementar swagger
+- seguir usuários
 
 To-do:     (não estão em ordem)
-- seguir usuários
+- comentar em pins
+    (
+        tabela para comentários
+        contendo id, texto, perfil que comentou, pin comentado
+        um perfil teria uma coleção de comentários feitos
+        um pin teria uma coleção de coments -> um coment tem um pin, mas um pin tem vários coments
+    )
+
+- curtir pins
+    (
+        tabela de likes
+        contendo id, pin que foi curtido, perfil que curtiu
+        um perfil teria uma coleção de likes feitos
+        um pin teria um coleção de likes -> um like tem um pin, mas um pin tem vários likes
+    )
 
 Ideias secundárias:     (se eu tiver afim)
 - chat

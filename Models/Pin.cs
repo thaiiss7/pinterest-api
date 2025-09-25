@@ -8,4 +8,6 @@ public class Pin
     public Guid ProfileID { get; set; }
     public Profile Author { get; set; }
     public ICollection<Folder> Folders { get; set; } = [];
+    public ICollection<Like> Likes { get; set; } = [];
+    public ICollection<Comment> Comments { get; set; } = [];
 }

@@ -6,8 +6,10 @@ public class Profile
     public string Username { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
-    public string ?Bio { get; set; }
+    public string? Bio { get; set; }
     public ICollection<Profile> Followers { get; set; } = [];
     public ICollection<Folder>? Folders { get; set; } = [];
     public ICollection<Pin>? CreatedPins { get; set; } = [];
+    public ICollection<Like> LikesByProfile { get; set; } = [];
+    public ICollection<Comment> CommentsByProfile { get; set; } = [];
 }
