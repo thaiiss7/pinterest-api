@@ -19,21 +19,17 @@ Ideia principal:
 - seguir usuários
 
 To-do:     (não estão em ordem)
-- comentar em pins
-    (
-        tabela para comentários
-        contendo id, texto, perfil que comentou, pin comentado
-        um perfil teria uma coleção de comentários feitos
-        um pin teria uma coleção de coments -> um coment tem um pin, mas um pin tem vários coments
-    )
+- comentar em pins:
+    - definir usecases: CommentPin (post), GetComment (get), DeleteComment
+    - implementar payloads e responses
+    - implementar usecases
+    - endpoints
 
 - curtir pins
-    (
-        tabela de likes
-        contendo id, pin que foi curtido, perfil que curtiu
-        um perfil teria uma coleção de likes feitos
-        um pin teria um coleção de likes -> um like tem um pin, mas um pin tem vários likes
-    )
+    - definir usecases: LikePin (post), DeleteLike
+    - implementar payloads e responses
+    - implementar usecases
+    - endpoints
 
 Ideias secundárias:     (se eu tiver afim)
 - chat
